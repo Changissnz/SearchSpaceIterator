@@ -1,15 +1,10 @@
-from matrix_methods import *# is_2dmatrix, is_vector
+from matrix_methods import *
 import math
+
 """
 class uses a 1-d number line as reference
 number line is finite between `minBound` and `maxBound`.
-
-two types of hops to consider:
-- uni-directional
-
-A proper cycle is a cycle in which the first and last element are identical.
 """
-# TODO:
 class HopPattern:
 
     DEF_INCREMENT_RATIO = 0.5
@@ -20,8 +15,6 @@ class HopPattern:
 
         self.value = initialValue
         self.ptrValue1,self.ptrValue2 = self.value,None
-
-        ##self.ptrAlternator = None
         self.bounds = [minBound,maxBound]
 
         ### TODO: mod here
@@ -177,13 +170,11 @@ class HopPattern:
             return bounds[1]
         return value
 
-    # TODO: untested.
     """
     'hops' the value by modulo: if hop is on
     the non-head bound,
 
     """
-    # TODO: delete boundary round value from hop_one
     @staticmethod
     def modulo_hop(value, hop, bounds, head):
         assert head in [0,1], "invalid head {}".format(head)
@@ -211,13 +202,7 @@ class HopPattern:
         return round(value,5)
 
     ################### start: cycle checker
-    """
-    case: unidirectional
-    -
 
-    case: bidirectional
-    -
-    """
     def did_cycle(self):
         if not self.initialized: return self.initialized
         return True if abs(self.head - self.ptrValue1) < 10 ** -3 and self.elementCount > 1 else False
@@ -232,7 +217,6 @@ class HopPattern:
             return True
         return False
 
-    # TODO: test this.
     """
     """
     def percentage_of_cycle_run(self):

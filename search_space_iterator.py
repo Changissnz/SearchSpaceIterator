@@ -4,20 +4,8 @@ generates the next value to be searched and logged
 from hop_pattern import *
 from copy import deepcopy
 
-# TODO
-"""
-if integers n,q exists so that f =n/q
-"""
-def is_rational_number(f):
-    return -1
-
 """
 iterator operates in a sequential/linear manner.
-"""
-# TODO: SearchSpacePatternFunction (non-linear iteration)
-"""
-cycle head (the start point) will appear once as the first element
-during iteration.
 """
 class SearchSpaceIterator:
 
@@ -28,6 +16,7 @@ class SearchSpaceIterator:
         assert is_proper_bounds_vector(bounds), "invalid bounds"
         assert is_vector(startPoint), "invalid start point"
         assert cycleIs in [0,1], "cycle-is is wrong"
+
         # TODO: check column order
         self.bounds = bounds
         self.startPoint = startPoint
@@ -202,9 +191,8 @@ class SearchSpaceIterator:
                 break
 
             modIndex = lastIndex % len(self.columnOrder)
-            # check index
-            ##print("did column {} at {} cycle?:\t{}".format(self.columnOrder[modIndex], self.hopPatterns[self.columnOrder[modIndex]].value_at(),self.hopPatterns[self.columnOrder[modIndex]].did_cycle()))
 
+            # check index
             if self.hopPatterns[self.columnOrder[modIndex]].did_cycle():
                 modIndex2 = (modIndex + increment) % len(self.columnOrder)
 
@@ -229,9 +217,3 @@ class SearchSpaceIterator:
         diffThreshold = 2 * (10 ** -5)
         diff = abs(diff)
         return np.all(diff <= diffThreshold)
-
-# hop coverage vs coverage of hop
-'''
-hop coverage: approximate percentage of total area covered
-coverage of hop: percentage of possible values by arg<hopVec> conducted
-'''
