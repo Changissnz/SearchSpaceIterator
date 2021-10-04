@@ -12,7 +12,7 @@ class SearchSpaceIterator:
     """
     columnOrder := vector<column indices>, first is left head
     """
-    def __init__(self,bounds, startPoint, columnOrder, SSIHop = 7, hopScheme = "proportional",cycleOn = False, cycleIs = 0):
+    def __init__(self,bounds, startPoint, columnOrder, SSIHop = 7,cycleOn = False, cycleIs = 0):
         assert is_proper_bounds_vector(bounds), "invalid bounds"
         assert is_vector(startPoint), "invalid start point"
         assert cycleIs in [0,1], "cycle-is is wrong"
@@ -30,7 +30,6 @@ class SearchSpaceIterator:
 
         self.cycleOn = cycleOn
         self.ssiHop = SSIHop
-        self.hopScheme = hopScheme
 
         self.set_hop_pattern_for_columns(self.ssiHop)
         self.calculate_endpoint()
